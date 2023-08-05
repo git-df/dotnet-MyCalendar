@@ -1,0 +1,32 @@
+﻿@page
+@model MyCalendar.Pages.Comment.AddCommentModel
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Dodawanie komentarza</h1>
+    </div>
+</div>
+
+<div>
+    <div class="container">
+        <form method="post">
+            <div class="mb-3">
+                <label for="Message" class="form-label">Komentarz:</label>
+                <input type="text" class="form-control" id="Message" asp-for="CommentAddModel.Message" />
+                <span class="text-danger" asp-validation-for="CommentAddModel.Message"></span>
+            </div>
+            <button class="btn btn-dark" type="submit" asp-route-eventId="@Model.EventId">Dodaj</button>
+        </form>
+    </div>
+</div>
+
+@if (ViewData["Message"] != null)
+{
+    <div class="py-2">
+        <div class="container">
+            <span class="text-warning">@ViewData["Message"]</span>
+        </div>
+    </div>
+}

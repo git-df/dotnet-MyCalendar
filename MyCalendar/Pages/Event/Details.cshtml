@@ -1,0 +1,116 @@
+﻿@page
+@model MyCalendar.Pages.Event.DetailsModel
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1 class="h1">Szczegóły wydarzenia</h1>
+        <h5 class="h5">Autor @Model.EventDetails.Author.ToUpper()</h5>
+    </div>
+</div>
+
+@if (Model.EventDetails != null)
+{
+    <div>
+        <div class="container">
+            <form method="post">
+                <div class="row p-2">
+                    <span class="col-11"></span>
+                    @if (Model.EventDetails.Editable)
+                    {
+                        <button class="btn btn-dark col-1" type="submit" asp-route-eventId="@Model.EventDetails.Id">Zapisz</button>
+                    }
+                </div>
+                @if (Model.EventDetails.Editable)
+                {
+                    <div class="mb-3">
+                        <label for="Title" class="form-label">Tytuł:</label>
+                        <input type="text" class="form-control" id="Title" asp-for="EventDetails.Title" />
+                        <span class="text-danger" asp-validation-for="EventDetails.Title"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Label" class="form-label">Etykieta:</label>
+                        <input type="text" class="form-control" id="Label" asp-for="EventDetails.Label" />
+                        <span class="text-danger" asp-validation-for="EventDetails.Label"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Opis:</label>
+                        <textarea class="form-control" id="Description" asp-for="EventDetails.Description"></textarea>
+                        <span class="text-danger" asp-validation-for="EventDetails.Description"></span>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="EventDate" class="form-label">Od:</label>
+                            <input type="datetime-local" class="form-control" id="EventDate" asp-for="EventDetails.EventDate" />
+                            <span class="text-danger" asp-validation-for="EventDetails.EventDate"></span>
+                        </div>
+                        <div class="col-6">
+                            <label for="EndEventDate" class="form-label">Od:</label>
+                            <input type="datetime-local" class="form-control" id="EndEventDate" asp-for="EventDetails.EndEventDate" />
+                            <span class="text-danger" asp-validation-for="EventDetails.EndEventDate"></span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label for="Title" class="form-label">Tytuł:</label>
+                        <input type="text" class="form-control" id="Title" asp-for="EventDetails.Title" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Label" class="form-label">Etykieta:</label>
+                        <input type="text" class="form-control" id="Label" asp-for="EventDetails.Label" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Opis:</label>
+                        <textarea class="form-control" id="Description" asp-for="EventDetails.Description" readonly></textarea>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="EventDate" class="form-label">Od:</label>
+                            <input type="datetime-local" class="form-control" id="EventDate" asp-for="EventDetails.EventDate" readonly />
+                        </div>
+                        <div class="col-6">
+                            <label for="EndEventDate" class="form-label">Od:</label>
+                            <input type="datetime-local" class="form-control" id="EndEventDate" asp-for="EventDetails.EndEventDate" readonly />
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+}
+
+<div>
+    <div class="container">
+        <h4 class="h4">Komentarze</h4>
+        @if (Model.EventDetails.Comments.Count() > 0)
+        {
+            <table class="table">
+                @foreach (var comment in Model.EventDetails.Comments)
+                {
+                    <tr>
+                        <td class="col-3">
+                            <span>@comment.Author.ToUpper()</span>
+                        </td>
+                        <td class="col-9">
+                            <span>@comment.Message</span>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        <a class="btn btn-dark float-end" asp-page="/Comment/AddComment" asp-route-eventId="@Model.EventDetails.Id">Dodaj</a>
+    </div>
+</div>
+
+
+@if (ViewData["Message"] != null)
+{
+    <div class="py-2">
+        <div class="container">
+            <span class="text-warning">@ViewData["Message"]</span>
+        </div>
+    </div>
+}

@@ -1,0 +1,54 @@
+﻿@page
+@model MyCalendar.Pages.Event.AddEventModel
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Dodawanie wydarzenia</h1>
+    </div>
+</div>
+
+<div>
+    <div class="container">
+        <form method="post">
+            <div class="mb-3">
+                <label for="Title" class="form-label">Tytuł:</label>
+                <input type="text" class="form-control" id="Title" asp-for="EventAddModel.Title" />
+                <span class="text-danger" asp-validation-for="EventAddModel.Title"></span>
+            </div>
+            <div class="mb-3">
+                <label for="Label" class="form-label">Etykieta:</label>
+                <input type="text" class="form-control" id="Label" asp-for="EventAddModel.Label" />
+                <span class="text-danger" asp-validation-for="EventAddModel.Label"></span>
+            </div>
+            <div class="mb-3">
+                <label for="Description" class="form-label">Opis:</label>
+                <input type="text" class="form-control" id="Description" asp-for="EventAddModel.Description" />
+                <span class="text-danger" asp-validation-for="EventAddModel.Description"></span>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="EventDate" class="form-label">Od:</label>
+                    <input type="datetime-local" class="form-control" id="EventDate" asp-for="EventAddModel.EventDate" />
+                    <span class="text-danger" asp-validation-for="EventAddModel.EventDate"></span>
+                </div>
+                <div class="col-6">
+                    <label for="EndEventDate" class="form-label">Od:</label>
+                    <input type="datetime-local" class="form-control" id="EndEventDate" asp-for="EventAddModel.EndEventDate" />
+                    <span class="text-danger" asp-validation-for="EventAddModel.EndEventDate"></span>
+                </div>
+            </div>
+            <button class="btn btn-dark" type="submit">Dodaj</button>
+        </form>
+    </div>
+</div>
+
+@if (ViewData["Message"] != null)
+{
+    <div class="py-2">
+        <div class="container">
+            <span class="text-warning">@ViewData["Message"]</span>
+        </div>
+    </div>
+}
