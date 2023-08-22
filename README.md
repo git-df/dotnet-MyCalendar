@@ -1,10 +1,9 @@
 # MyCalendar
 
-Welcome to MyCalendar! This project aims to provide a versatile and user-friendly calendar application developed using the .NET framework. With MyCalendar, users can manage their schedules, events, and appointments in an organized and intuitive way.
+Welcome to MyCalendar! This project aims to provide a versatile and user-friendly calendar application developed using the .NET Core Razor Pages. With MyCalendar, users can manage their schedules, events, and appointments in an organized and intuitive way.
 
 ## Technologies
-* Blazor WebAssembly
-* Rest API
+* Razor Pages
 
 Project is created with:
 - Entity Framework Core (7.0.2)
