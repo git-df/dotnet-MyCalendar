@@ -4,6 +4,7 @@ Welcome to MyCalendar! This project aims to provide a versatile and user-friendl
 
 ## Technologies
 * Razor Pages
+* MS SQL
 
 Project is created with:
 - Entity Framework Core (7.0.2)
